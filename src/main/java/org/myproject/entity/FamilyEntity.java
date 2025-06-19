@@ -17,10 +17,9 @@ public class FamilyEntity {
     private String familyName;
     private String address;
     private String telephone;
-    private Long userId;  // Added userId field
 
-    @OneToMany
-    private List<MemberEntity> members;
+    @ManyToMany
+    private List<MemberEntity> member;
 
     @OneToMany(mappedBy = "family")
     private List<VillageFamilyEntity> villageFamilies;
@@ -28,3 +27,4 @@ public class FamilyEntity {
     @OneToMany(mappedBy = "family")
     private List<TempleDanaAssignmentEntity> templeDanaAssignments;
 }
+

@@ -23,11 +23,7 @@ public class FamilyController {
         return familyService.getAllFamilies();
     }
 
-    @GetMapping("/by-user/{userId}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<FamilyDTO> getAllFamiliesByUserId(@PathVariable Long userId) {
-        return familyService.getAllFamiliesByUserId(userId);
-    }
+
 
     @GetMapping("/by-temple/{templeId}")
     @ResponseStatus(HttpStatus.OK)

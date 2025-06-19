@@ -18,6 +18,4 @@ public interface FamilyService {
     FamilyDTO updateFamily(FamilyDTO familyDTO);
 
     void deleteFamily(Long id);
-
-    List<FamilyDTO> getAllFamiliesByUserId(Long userId);
 }

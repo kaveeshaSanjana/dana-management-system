@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -21,7 +22,7 @@ public class MemberEntity {
     private Integer nic;
     private LocalDate dob;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "family_id")
-    private FamilyEntity family;
+    private List<FamilyEntity> family;
 }
