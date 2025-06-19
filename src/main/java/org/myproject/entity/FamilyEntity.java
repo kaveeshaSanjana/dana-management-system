@@ -17,7 +17,14 @@ public class FamilyEntity {
     private String familyName;
     private String address;
     private String telephone;
+    private Long userId;  // Added userId field
 
     @OneToMany
     private List<MemberEntity> members;
+
+    @OneToMany(mappedBy = "family")
+    private List<VillageFamilyEntity> villageFamilies;
+
+    @OneToMany(mappedBy = "family")
+    private List<TempleDanaAssignmentEntity> templeDanaAssignments;
 }

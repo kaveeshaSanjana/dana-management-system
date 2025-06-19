@@ -10,4 +10,10 @@ public interface HeadMonkService {
     HeadMonkDTO findById(Long id);
 
     List<HeadMonkDTO> findByTempleId(Long templeId);
+
+    HeadMonkDTO create(HeadMonkDTO headMonkDTO);
+
+    HeadMonkDTO update(HeadMonkDTO headMonkDTO);
+
+    void delete(Long id);
 }
