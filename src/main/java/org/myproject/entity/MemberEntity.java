@@ -21,5 +21,7 @@ public class MemberEntity {
     private Integer nic;
     private LocalDate dob;
 
-
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    private FamilyEntity family;
 }

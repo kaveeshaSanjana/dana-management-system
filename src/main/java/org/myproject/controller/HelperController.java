@@ -1,9 +1,10 @@
 package org.myproject.controller;
 
-
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.myproject.dto.HelperDTO;
 import org.myproject.service.HelperService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,31 +12,38 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/helper")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class HelperController {
-    private HelperService helperService;
 
-    @PostMapping()
-    public HelperDTO createHelper(HelperDTO helperDTO) {
+    private final HelperService helperService;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public HelperDTO createHelper(@Valid @RequestBody HelperDTO helperDTO) {
         return helperService.create(helperDTO);
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public HelperDTO getHelperById(@PathVariable Long id) {
         return helperService.findById(id);
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<HelperDTO> getAllHelpers() {
         return helperService.findAll();
     }
 
-    @GetMapping("/temple/{id}")
-    public List<HelperDTO> getAllHelpersByTemple(@PathVariable Long id) {
-        return helperService.findAllByTemple(id);
+    @GetMapping("/temple/{templeId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<HelperDTO> getHelpersByTemple(@PathVariable Long templeId) {
+        return helperService.findAllByTemple(templeId);
     }
 
     @PutMapping("/{id}")
-    public HelperDTO updateHelper(@PathVariable Long id, @RequestBody HelperDTO helperDTO) {
+    @ResponseStatus(HttpStatus.OK)
+    public HelperDTO updateHelper(@PathVariable Long id, @Valid @RequestBody HelperDTO helperDTO) {
         return helperService.update(id, helperDTO);
     }
 }
