@@ -40,7 +40,7 @@ public class VillageFamilyServiceImpl implements VillageFamilyService {
     public VillageFamilyDTO create(VillageFamilyDTO villageFamilyDTO) {
         VillageFamilyEntity entity = modelMapper.map(villageFamilyDTO, VillageFamilyEntity.class);
         TempleVillageId templeVillageId = new TempleVillageId(villageFamilyDTO.getTempleId(), villageFamilyDTO.getVillageId());
-        VillageFamilyId id = new VillageFamilyId(templeVillageId, villageFamilyDTO.getFamilyId());
+        VillageFamilyId id = new VillageFamilyId(templeVillageId, villageFamilyDTO.getFamily().getId());
         entity.setId(id);
         VillageFamilyEntity savedEntity = villageFamilyRepository.save(entity);
         return modelMapper.map(savedEntity, VillageFamilyDTO.class);

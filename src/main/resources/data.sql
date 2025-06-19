@@ -55,24 +55,24 @@ INSERT INTO family (id, family_name, address, telephone) VALUES
 
 -- Insert HeadMonks (depends on: temples)
 INSERT INTO head_monks (id, monk_name, email, password, phone_number, temple_id) VALUES
-(1, 'Ven. Samitha Thero', 'samitha@temple.lk', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0712345678', 1),
-(2, 'Ven. Sudantha Thero', 'sudantha@temple.lk', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0723456789', 2),
-(3, 'Ven. Chandima Thero', 'chandima@temple.lk', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0734567890', 3);
+(1, 'Ven. Samitha Thero', 'samitha@temple.lk', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0712345678', 1),
+(2, 'Ven. Sudantha Thero', 'sudantha@temple.lk', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0723456789', 2),
+(3, 'Ven. Chandima Thero', 'chandima@temple.lk', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0734567890', 3);
 
 -- Insert Helpers (depends on: temples)
 INSERT INTO helper (id, name, email, password, phone_number, temple_id) VALUES
-(1, 'Kumara', 'kumara@helper.lk', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0761234567', 1),
-(2, 'Saman', 'saman@helper.lk', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0762345678', 2),
-(3, 'Nimal', 'nimal@helper.lk', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0763456789', 3);
+(1, 'Kumara', 'kumara@helper.lk', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0761234567', 1),
+(2, 'Saman', 'saman@helper.lk', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0762345678', 2),
+(3, 'Nimal', 'nimal@helper.lk', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0763456789', 3);
 
 -- 3. Insert tables with multiple foreign key dependencies
 -- ========================================================
 
 -- Insert Members (depends on: families)
 INSERT INTO member (id, name, email, password, phone_number, address, nic, dob) VALUES
-(1, 'John Perera', 'john@gmail.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0771234567', 'No 123, Temple Road', 199012345, '1990-01-01'),
-(2, 'Mary Silva', 'mary@gmail.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0772345678', 'No 456, Lake Road', 199123456, '1991-02-02'),
-(3, 'Peter Fernando', 'peter@gmail.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6', '0773456789', 'No 789, Station Road', 199234567, '1992-03-03');
+(1, 'John Perera', 'john@gmail.com', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0771234567', 'No 123, Temple Road', 199012345, '1990-01-01'),
+(2, 'Mary Silva', 'mary@gmail.com', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0772345678', 'No 456, Lake Road', 199123456, '1991-02-02'),
+(3, 'Peter Fernando', 'peter@gmail.com', '$2a$10$up.lKxGZ25lnyav7XNFyzO33MwRvXIEEOiEKItdr/VqrOL07IWcMC', '0773456789', 'No 789, Station Road', 199234567, '1992-03-03');
 
 INSERT INTO temple_villages (temple_id, village_id) VALUES
 -- Families connected to Vajiraramaya (Temple 1)

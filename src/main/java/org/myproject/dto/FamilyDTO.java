@@ -9,6 +9,4 @@ public class FamilyDTO {
     private String familyName;
     private String address;
     private String telephone;
-    private List<MemberDTO> members;
-//    private List<VillageFamilyDTO> villageFamilies;
 }

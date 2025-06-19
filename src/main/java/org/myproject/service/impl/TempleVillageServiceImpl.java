@@ -37,7 +37,7 @@ public class TempleVillageServiceImpl implements TempleVillageService {
     @Override
     public TempleVillageDTO create(TempleVillageDTO templeVillageDTO) {
         TempleVillageEntity entity = modelMapper.map(templeVillageDTO, TempleVillageEntity.class);
-        TempleVillageId id = new TempleVillageId(templeVillageDTO.getTempleId(), templeVillageDTO.getVillageId());
+        TempleVillageId id = new TempleVillageId(templeVillageDTO.getTempleId(), templeVillageDTO.getVillage().getId());
         entity.setId(id);
         TempleVillageEntity savedEntity = templeVillageRepository.save(entity);
         return modelMapper.map(savedEntity, TempleVillageDTO.class);

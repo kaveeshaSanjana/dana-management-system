@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class VillageFamilyDTO {
     private Long villageId;
-    private Long familyId;
+    private FamilyDTO family;
     private Long templeId;
 
     // Reference fields for displaying data
-    private VillageDTO village;
-    private FamilyDTO family;
-    private TempleDTO temple;
+//    private VillageDTO village;
+//    private FamilyDTO family;
+//    private TempleDTO temple;
 }

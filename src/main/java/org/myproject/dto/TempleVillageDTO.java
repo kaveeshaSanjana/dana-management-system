@@ -6,6 +6,6 @@ import java.util.List;
 @Data
 public class TempleVillageDTO {
     private Long templeId;
-    private Long villageId;
+    private VillageDetailDTO village;
     private List<VillageFamilyDTO> villageFamilies;
 }
