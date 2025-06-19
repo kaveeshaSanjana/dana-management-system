@@ -9,7 +9,6 @@ public class FamilyDTO {
     private String familyName;
     private String address;
     private String telephone;
-    private Long userId;  // Added userId field
     private List<MemberDTO> members;
-    private List<VillageFamilyDTO> villageFamilies;
+//    private List<VillageFamilyDTO> villageFamilies;
 }

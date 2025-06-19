@@ -23,6 +23,10 @@ public class MemberEntity {
     private LocalDate dob;
 
     @ManyToMany
-    @JoinColumn(name = "family_id")
+    @JoinTable(
+            name = "member_family",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "family_id")
+    )
     private List<FamilyEntity> family;
 }

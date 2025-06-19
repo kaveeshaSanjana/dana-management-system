@@ -18,7 +18,7 @@ public class FamilyEntity {
     private String address;
     private String telephone;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "family")
     private List<MemberEntity> member;
 
     @OneToMany(mappedBy = "family")

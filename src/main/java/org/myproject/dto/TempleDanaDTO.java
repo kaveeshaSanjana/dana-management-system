@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class TempleDanaDTO {
     private Long templeId;
-    private Long danaId;
+    private DanaDTO dana;
     private Integer minNumberOfFamilies;
-    private List<TempleDanaAssignmentDTO> assignments;
+    private List<TempleDanaAssignmentDTOForTempleDanaDTO> assignments;
 }

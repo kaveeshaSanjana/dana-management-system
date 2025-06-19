@@ -28,4 +28,6 @@ public class VillageFamilyEntity {
     @ManyToOne
     @JoinColumn(name = "village_id", insertable = false, updatable = false)
     private VillageEntity village;
+
+
 }

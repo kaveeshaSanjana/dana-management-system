@@ -11,8 +11,4 @@ public class TempleDTO {
     private String contactNumber;
     private String email;
     private String website;
-    private List<TempleDanaDTO> templeDanas;
-    private List<HeadMonkDTO> headMonks;
-    private List<HelperDTO> helpers;
-    private List<TempleVillageDTO> templeVillages;
 }
