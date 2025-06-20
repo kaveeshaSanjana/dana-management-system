@@ -3,8 +3,10 @@ package org.myproject.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.myproject.dto.TempleDanaAssignmentDTO;
+import org.myproject.dto.TempleDTO;
 import org.myproject.entity.TempleDanaAssignmentEntity;
 import org.myproject.repository.TempleDanaAssignmentRepository;
+import org.myproject.repository.TempleRepository;
 import org.myproject.service.TempleDanaAssignmentService;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class TempleDanaAssignmentServiceImpl implements TempleDanaAssignmentServ
 
     private final TempleDanaAssignmentRepository assignmentRepository;
     private final ModelMapper modelMapper;
+    private final TempleRepository templeRepository;
 
     @Override
     public List<TempleDanaAssignmentDTO> findAll() {
@@ -71,4 +74,20 @@ public class TempleDanaAssignmentServiceImpl implements TempleDanaAssignmentServ
                 .map(entity -> modelMapper.map(entity, TempleDanaAssignmentDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<TempleDanaAssignmentDTO> findByFamilyIds(List<Long> familyIds) {
+        return assignmentRepository.findByFamilyIds(familyIds).stream()
+                .map(entity -> {
+                    TempleDanaAssignmentDTO dto = modelMapper.map(entity, TempleDanaAssignmentDTO.class);
+                    if (dto.getTempleDana() != null && dto.getTempleDana().getTempleId() != null) {
+                        TempleDTO temple = modelMapper.map(entity.getTempleDana().getTemple(), TempleDTO.class);
+                        dto.getTempleDana().setTempleId(temple);
+                    }
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+
+
 }

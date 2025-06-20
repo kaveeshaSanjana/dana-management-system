@@ -2,6 +2,7 @@ package org.myproject.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.myproject.config.JwtUtil;
 import org.myproject.dto.TempleDanaAssignmentDTO;
 import org.myproject.service.TempleDanaAssignmentService;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import java.util.List;
 public class TempleDanaAssignmentController {
 
     private final TempleDanaAssignmentService assignmentService;
+    private final JwtUtil jwtUtil;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -43,9 +45,19 @@ public class TempleDanaAssignmentController {
         return assignmentService.findByFamilyId(familyId);
     }
 
+
+    @GetMapping("/by-family-ids")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TempleDanaAssignmentDTO> getAssignmentsByFamilyIds(@RequestHeader("Authorization") String authHeader) {
+        List<Long> longs = jwtUtil.extractFamilyIds(authHeader.substring(7));
+        return assignmentService.findByFamilyIds(longs);
+    }
+
+
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public TempleDanaAssignmentDTO createAssignment(@Valid @RequestBody TempleDanaAssignmentDTO assignmentDTO) {
+    public TempleDanaAssignmentDTO createAssignment(
+            @Valid @RequestBody TempleDanaAssignmentDTO assignmentDTO,
+            @RequestHeader("Authorization") String token) {
         return assignmentService.create(assignmentDTO);
     }
 
@@ -62,4 +74,8 @@ public class TempleDanaAssignmentController {
     public void deleteAssignment(@PathVariable Long id) {
         assignmentService.delete(id);
     }
+
+
 }
+
+

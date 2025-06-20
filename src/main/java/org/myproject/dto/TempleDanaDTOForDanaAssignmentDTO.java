@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class TempleDanaDTOForDanaAssignmentDTO {
-    private Long templeId;
-    private Long danaId;
+    private TempleDTO templeId;
+    private DanaDTO danaId;
     private Integer minNumberOfFamilies;
     }

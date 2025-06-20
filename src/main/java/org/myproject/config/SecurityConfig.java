@@ -29,6 +29,7 @@ public class SecurityConfig {
             "/api/auth/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
+            "/api/temple-dana-assignment/families/**",
             "/swagger-resources/**"
     };
 
@@ -70,4 +71,5 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 }

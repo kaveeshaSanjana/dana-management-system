@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -25,9 +26,10 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String generateToken(String phoneNumber, UserRole role) {
+    public String generateToken(String phoneNumber, UserRole role , List<Long> familyIds) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", role);
+        claims.put("familyIds",familyIds);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -47,6 +49,14 @@ public class JwtUtil {
         return claims.get("role", String.class);
     }
 
+    public List<Long> extractFamilyIds(String token) {
+        Claims claims = extractAllClaims(token);
+        List<?> familyIds = claims.get("familyIds", List.class);
+        return familyIds.stream()
+                .map(id -> Long.valueOf(String.valueOf(id)))
+                .toList();
+    }
+
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
@@ -59,17 +69,17 @@ public class JwtUtil {
         }
     }
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
-
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
     }
 
     public boolean isTokenExpired(String token) {

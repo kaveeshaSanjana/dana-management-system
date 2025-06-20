@@ -6,9 +6,10 @@ import java.time.LocalDate;
 @Data
 public class TempleDanaAssignmentDTO {
     private Long id;
-    private TempleDanaDTOForDanaAssignmentDTO templeDana;
+    private TempleDanaDTO templeDana;
     private FamilyDTO family;
     private LocalDate date;
     private Boolean isConfirmed;
     private LocalDate confirmationDate;
 }
+

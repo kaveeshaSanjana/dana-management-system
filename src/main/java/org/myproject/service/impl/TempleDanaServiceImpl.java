@@ -37,7 +37,7 @@ public class TempleDanaServiceImpl implements TempleDanaService {
     @Override
     public TempleDanaDTO create(TempleDanaDTO templeDanaDTO) {
         TempleDanaEntity entity = modelMapper.map(templeDanaDTO, TempleDanaEntity.class);
-        TempleDanaEntityId id = new TempleDanaEntityId(templeDanaDTO.getTempleId(), templeDanaDTO.getDana().getId());
+        TempleDanaEntityId id = new TempleDanaEntityId(templeDanaDTO.getDana().getId(), templeDanaDTO.getDana().getId());
         entity.setId(id);
         TempleDanaEntity savedEntity = templeDanaRepository.save(entity);
         return modelMapper.map(savedEntity, TempleDanaDTO.class);
