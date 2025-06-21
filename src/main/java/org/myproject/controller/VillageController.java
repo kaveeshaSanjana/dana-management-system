@@ -20,7 +20,7 @@ public class VillageController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<VillageDTO> getAllVillages() {
+    public List<VillageDTOForList> getAllVillages() {
         return villageService.findAll();
     }
 

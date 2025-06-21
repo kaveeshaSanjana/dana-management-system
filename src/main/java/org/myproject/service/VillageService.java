@@ -6,7 +6,7 @@ import org.myproject.dto.VillageDTOForList;
 import java.util.List;
 
 public interface VillageService {
-    List<VillageDTO> findAll();
+    List<VillageDTOForList> findAll();
 
     VillageDTO findById(Long id);
 

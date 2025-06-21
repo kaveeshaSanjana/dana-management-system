@@ -20,9 +20,9 @@ public class VillageServiceImpl implements VillageService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<VillageDTO> findAll() {
+    public List<VillageDTOForList> findAll() {
         return villageRepository.findAll().stream()
-                .map(entity -> modelMapper.map(entity, VillageDTO.class))
+                .map(entity -> modelMapper.map(entity, VillageDTOForList.class))
                 .collect(Collectors.toList());
     }
 
