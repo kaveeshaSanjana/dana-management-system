@@ -45,14 +45,12 @@ public class TempleDanaAssignmentController {
         return assignmentService.findByFamilyId(familyId);
     }
 
-
     @GetMapping("/by-family-ids")
     @ResponseStatus(HttpStatus.OK)
     public List<TempleDanaAssignmentDTO> getAssignmentsByFamilyIds(@RequestHeader("Authorization") String authHeader) {
         List<Long> longs = jwtUtil.extractFamilyIds(authHeader.substring(7));
         return assignmentService.findByFamilyIds(longs);
     }
-
 
     @PostMapping
     public TempleDanaAssignmentDTO createAssignment(
@@ -74,8 +72,6 @@ public class TempleDanaAssignmentController {
     public void deleteAssignment(@PathVariable Long id) {
         assignmentService.delete(id);
     }
-
-
 }
 
 

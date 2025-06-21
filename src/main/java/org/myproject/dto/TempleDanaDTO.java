@@ -11,3 +11,4 @@ public class TempleDanaDTO {
     private Integer minNumberOfFamilies;
     private List<TempleDanaAssignmentDTOForTempleDanaDTO> assignments;
 }
+

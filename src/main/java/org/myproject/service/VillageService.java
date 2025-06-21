@@ -1,6 +1,8 @@
 package org.myproject.service;
 
 import org.myproject.dto.VillageDTO;
+import org.myproject.dto.VillageDTOForList;
+
 import java.util.List;
 
 public interface VillageService {
@@ -14,7 +16,7 @@ public interface VillageService {
 
     void delete(Long id);
 
-    List<VillageDTO> findByTempleId(Long templeId);
+    List<VillageDTOForList> findByTempleId(Long templeId);
 
     List<VillageDTO> findByFamilyId(Long familyId);
 }

@@ -1,0 +1,16 @@
+package org.myproject.dto;
+
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class VillageDTOForList {
+    private Long id;
+    private String name;
+    private String province;
+    private String district;
+    private String country;
+    private String postalCode;
+}
+
