@@ -3,7 +3,6 @@ package org.myproject.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.myproject.dto.VillageDTO;
-import org.myproject.dto.VillageDTOForList;
 import org.myproject.service.VillageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class VillageController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<VillageDTOForList> getAllVillages() {
+    public List<VillageDTO> getAllVillages() {
         return villageService.findAll();
     }
 
@@ -32,7 +31,7 @@ public class VillageController {
 
     @GetMapping("/temple/{templeId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<VillageDTOForList> getVillagesByTemple(@PathVariable Long templeId) {
+    public List<VillageDTO> getVillagesByTemple(@PathVariable Long templeId) {
         return villageService.findByTempleId(templeId);
     }
 

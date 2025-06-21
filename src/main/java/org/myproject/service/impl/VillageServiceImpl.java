@@ -3,7 +3,6 @@ package org.myproject.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.myproject.dto.VillageDTO;
-import org.myproject.dto.VillageDTOForList;
 import org.myproject.entity.VillageEntity;
 import org.myproject.repository.VillageRepository;
 import org.myproject.service.VillageService;
@@ -20,9 +19,9 @@ public class VillageServiceImpl implements VillageService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<VillageDTOForList> findAll() {
+    public List<VillageDTO> findAll() {
         return villageRepository.findAll().stream()
-                .map(entity -> modelMapper.map(entity, VillageDTOForList.class))
+                .map(entity -> modelMapper.map(entity, VillageDTO.class))
                 .collect(Collectors.toList());
     }
 
@@ -60,9 +59,9 @@ public class VillageServiceImpl implements VillageService {
     }
 
     @Override
-    public List<VillageDTOForList> findByTempleId(Long templeId) {
+    public List<VillageDTO> findByTempleId(Long templeId) {
         return villageRepository.findByTempleVillagesTempleId(templeId).stream()
-                .map(entity -> modelMapper.map(entity, VillageDTOForList.class))
+                .map(entity -> modelMapper.map(entity, VillageDTO.class))
                 .collect(Collectors.toList());
     }
 

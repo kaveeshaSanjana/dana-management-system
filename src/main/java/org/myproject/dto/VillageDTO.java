@@ -11,6 +11,4 @@ public class VillageDTO {
     private String district;
     private String country;
     private String postalCode;
-    private List<TempleVillageDTO> templeVillages;
-    private List<VillageFamilyDTO> villageFamilies;
 }
