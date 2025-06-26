@@ -2,6 +2,7 @@ package org.myproject.config;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.myproject.dto.SuperUserDto;
 import org.myproject.enums.UserRole;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,10 +27,11 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String generateToken(String phoneNumber, UserRole role , List<Long> familyIds) {
+    public String generateToken(String phoneNumber, UserRole role , List<Long> familyIds ,Long templeId) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", role);
-        claims.put("familyIds",familyIds);
+        if(familyIds != null)claims.put("familyIds",familyIds);
+        if(templeId != null)claims.put("templeId", templeId);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -47,6 +49,12 @@ public class JwtUtil {
     public String extractRole(String token) {
         Claims claims = extractAllClaims(token);
         return claims.get("role", String.class);
+    }
+
+
+    public Long extractTempleId(String token) {
+        Claims claims = extractAllClaims(token);
+        return claims.get("templeId", Long.class);
     }
 
     public List<Long> extractFamilyIds(String token) {

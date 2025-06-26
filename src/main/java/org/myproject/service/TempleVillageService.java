@@ -17,4 +17,8 @@ public interface TempleVillageService {
     List<TempleVillageDTO> findByTempleId(Long templeId);
 
     List<TempleVillageDTO> findByVillageId(Long villageId);
+
+    boolean isVillageAssignedToTemple(Long templeId, Long villageId);
+
+    TempleVillageDTO assignVillageToTemple(Long templeId, Long villageId);
 }

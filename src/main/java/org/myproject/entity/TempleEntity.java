@@ -2,6 +2,9 @@ package org.myproject.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.myproject.enums.District;
+import org.myproject.enums.Province;
+import org.myproject.enums.Town;
 
 import java.util.List;
 
@@ -18,6 +21,15 @@ public class TempleEntity {
     private String contactNumber;
     private String email;
     private String website;
+
+    @Enumerated(EnumType.STRING)
+    private Province province;
+
+    @Enumerated(EnumType.STRING)
+    private District district;
+
+    @Enumerated(EnumType.STRING)
+    private Town town;
 
     @OneToMany(mappedBy = "temple")
     private List<TempleDanaEntity> templeDanas;

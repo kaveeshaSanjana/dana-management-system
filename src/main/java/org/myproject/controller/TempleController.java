@@ -3,6 +3,9 @@ package org.myproject.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.myproject.dto.TempleDTO;
+import org.myproject.enums.District;
+import org.myproject.enums.Province;
+import org.myproject.enums.Town;
 import org.myproject.service.TempleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +54,14 @@ public class TempleController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTemple(@PathVariable Long id) {
         templeService.delete(id);
+    }
+
+    @GetMapping("/filter")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TempleDTO> getFilteredTemples(
+            @RequestParam(required = false) Province province,
+            @RequestParam(required = false) District district,
+            @RequestParam(required = false) Town town) {
+        return templeService.findByFilters(province, district, town);
     }
 }

@@ -2,9 +2,11 @@ package org.myproject.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.myproject.config.JwtUtil;
 import org.myproject.dto.MemberDTO;
 import org.myproject.service.MemberService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+    private final JwtUtil jwtUtil;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -63,5 +66,18 @@ public class MemberController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
+    }
+
+    @GetMapping("/by-phone/{phoneNumber}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<MemberDTO> getMemberByPhoneNumber(
+            @RequestHeader("Authorization") String authHeader,
+            @PathVariable String phoneNumber) {
+        String token = authHeader.substring(7); // Remove "Bearer " prefix
+        Long templeId = jwtUtil.extractTempleId(token);
+
+        return memberService.getMemberByPhoneNumberAndTemple(phoneNumber, templeId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

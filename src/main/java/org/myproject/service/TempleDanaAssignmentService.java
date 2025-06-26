@@ -1,6 +1,8 @@
 package org.myproject.service;
 
 import org.myproject.dto.TempleDanaAssignmentDTO;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TempleDanaAssignmentService {
@@ -19,4 +21,10 @@ public interface TempleDanaAssignmentService {
     List<TempleDanaAssignmentDTO> findByFamilyId(Long familyId);
 
     List<TempleDanaAssignmentDTO> findByFamilyIds(List<Long> familyIds);
+
+    List<TempleDanaAssignmentDTO> findByDateAndTemple(Long templeId, LocalDate date);
+
+    List<TempleDanaAssignmentDTO> findByPhoneNumber(Long templeId, String phoneNumber);
+
+    void confirmDana(Long id);
 }

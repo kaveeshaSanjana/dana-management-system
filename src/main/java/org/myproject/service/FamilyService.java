@@ -1,6 +1,6 @@
 package org.myproject.service;
 
-import org.myproject.dto.FamilyDTO;
+import org.myproject.dto.*;
 
 import java.util.List;
 
@@ -18,4 +18,12 @@ public interface FamilyService {
     FamilyDTO updateFamily(FamilyDTO familyDTO);
 
     void deleteFamily(Long id);
+
+    void assignMembersToFamily(MemberFamilyAssignmentDTO assignmentDTO);
+
+    FamilyDTO assignMembersToFamilyAtOnce(Long templeId, Long villageId, FamilyDTO familyDTO, List<MemberDTO> memberDTOs);
+
+    FamilyDTO assignMembersToFamilyAtOnce(Long templeId, Long villageId,
+                                          FamilyDTO familyDTO, List<MemberDTO> memberDTOs,
+                                          List<TempleDanaAssignmentRequestDTO> danaAssignments);
 }

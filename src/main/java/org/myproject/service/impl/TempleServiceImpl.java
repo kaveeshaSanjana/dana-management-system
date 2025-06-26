@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.myproject.dto.TempleDTO;
 import org.myproject.entity.TempleEntity;
+import org.myproject.enums.District;
+import org.myproject.enums.Province;
+import org.myproject.enums.Town;
 import org.myproject.repository.TempleRepository;
 import org.myproject.service.TempleService;
 import org.springframework.stereotype.Service;
@@ -61,6 +64,14 @@ public class TempleServiceImpl implements TempleService {
     @Override
     public List<TempleDTO> findByVillageId(Long villageId) {
         return templeRepository.findByTempleVillagesVillageId(villageId).stream()
+                .map(entity -> modelMapper.map(entity, TempleDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TempleDTO> findByFilters(Province province, District district, Town town) {
+        return templeRepository.findByFilters(province, district, town)
+                .stream()
                 .map(entity -> modelMapper.map(entity, TempleDTO.class))
                 .collect(Collectors.toList());
     }

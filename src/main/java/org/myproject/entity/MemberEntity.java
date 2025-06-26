@@ -19,7 +19,7 @@ public class MemberEntity {
     private String password;
     private String phoneNumber;
     private String address;
-    private Integer nic;
+    private String nic;
     private LocalDate dob;
 
     @ManyToMany

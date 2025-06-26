@@ -2,7 +2,9 @@ package org.myproject.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.myproject.config.JwtUtil;
 import org.myproject.dto.TempleDanaDTO;
+import org.myproject.dto.TempleDanaDTOForTDC;
 import org.myproject.service.TempleDanaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,11 @@ import java.util.List;
 public class TempleDanaController {
 
     private final TempleDanaService templeDanaService;
+    private final JwtUtil jwtUtil;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<TempleDanaDTO> getAllTempleDanas() {
+    public List<TempleDanaDTOForTDC> getAllTempleDanas() {
         return templeDanaService.findAll();
     }
 
@@ -33,7 +36,7 @@ public class TempleDanaController {
 
     @GetMapping("/temple/{templeId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TempleDanaDTO> getTempleDanasByTemple(@PathVariable Long templeId) {
+    public List<TempleDanaDTOForTDC> getTempleDanasByTemple(@PathVariable Long templeId) {
         return templeDanaService.findByTempleId(templeId);
     }
 
@@ -47,6 +50,16 @@ public class TempleDanaController {
     @ResponseStatus(HttpStatus.CREATED)
     public TempleDanaDTO createTempleDana(@Valid @RequestBody TempleDanaDTO templeDanaDTO) {
         return templeDanaService.create(templeDanaDTO);
+    }
+
+    @PostMapping("/assign/{danaId}/{minCount}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TempleDanaDTO assignDanaToTemple(@Valid @PathVariable("danaId") Long danaId,
+                                            @Valid @PathVariable("minCount") Integer minCount,
+                                            @RequestHeader("Authorization") String authHeader) {
+        Long templeId = jwtUtil.extractTempleId(authHeader.substring(7));
+        System.err.println(templeId+" "+danaId+" "+ minCount+" ");
+        return templeDanaService.assignDanaToTemple(templeId,danaId,minCount );
     }
 
     @PutMapping("/{templeId}/{danaId}")

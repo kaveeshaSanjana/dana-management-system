@@ -3,6 +3,9 @@ package org.myproject.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.myproject.dto.VillageDTO;
+import org.myproject.enums.District;
+import org.myproject.enums.Province;
+import org.myproject.enums.Town;
 import org.myproject.service.VillageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,8 @@ public class VillageController {
     public List<VillageDTO> getAllVillages() {
         return villageService.findAll();
     }
+
+
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -57,5 +62,14 @@ public class VillageController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteVillage(@PathVariable Long id) {
         villageService.delete(id);
+    }
+
+    @GetMapping("/filter")
+    @ResponseStatus(HttpStatus.OK)
+    public List<VillageDTO> getFilteredVillages(
+            @RequestParam(required = false) Province province,
+            @RequestParam(required = false) District district,
+            @RequestParam(required = false) Town town) {
+        return villageService.findByFilters(province, district, town);
     }
 }

@@ -3,7 +3,7 @@ package org.myproject.dto;
 import lombok.Data;
 
 @Data
-public class HelperDTO {
+public class HelperDTO extends SuperUserDto {
     private Long id;
     private String name;
     private String email;

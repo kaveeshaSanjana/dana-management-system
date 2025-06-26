@@ -43,9 +43,6 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(PUBLIC_URLS).permitAll()
-                .requestMatchers("/api/headmonk/**").hasRole("HEADMONK")
-                .requestMatchers("/api/member/**").hasRole("MEMBER")
-                .requestMatchers("/api/helper/**").hasRole("HELPER")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

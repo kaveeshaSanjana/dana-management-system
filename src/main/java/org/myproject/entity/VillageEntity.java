@@ -2,6 +2,9 @@ package org.myproject.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.myproject.enums.Province;
+import org.myproject.enums.District;
+import org.myproject.enums.Town;
 import java.util.List;
 
 @Entity
@@ -14,8 +17,16 @@ public class VillageEntity {
     private Long id;
 
     private String name;
-    private String province;
-    private String district;
+
+    @Enumerated(EnumType.STRING)
+    private Province province;
+
+    @Enumerated(EnumType.STRING)
+    private District district;
+
+    @Enumerated(EnumType.STRING)
+    private Town town;
+
     private String country;
     private String postalCode;
 

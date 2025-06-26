@@ -14,40 +14,46 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        // Configure ModelMapper
         modelMapper.getConfiguration()
             .setSkipNullEnabled(true)
             .setMatchingStrategy(MatchingStrategies.STRICT)
-            .setPreferNestedProperties(false)  // This is important for handling nested properties
-            .setFieldMatchingEnabled(true);
+            .setFieldMatchingEnabled(true)
+            .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
 
-        // Create type maps with full control over the mapping
-        modelMapper.typeMap(TempleDanaAssignmentEntity.class, TempleDanaAssignmentDTO.class)
+        // Create empty type maps first
+        modelMapper.createTypeMap(TempleDanaAssignmentEntity.class, TempleDanaAssignmentDTO.class);
+        modelMapper.createTypeMap(TempleDanaAssignmentDTO.class, TempleDanaAssignmentEntity.class);
+        modelMapper.createTypeMap(FamilyDTO.class, FamilyEntity.class);
+        modelMapper.createTypeMap(FamilyEntity.class, FamilyDTO.class);
+        modelMapper.createTypeMap(MemberDTO.class, MemberEntity.class);
+        modelMapper.createTypeMap(MemberEntity.class, MemberDTO.class);
+
+        // Configure TempleDanaAssignment mapping
+        modelMapper.getTypeMap(TempleDanaAssignmentDTO.class, TempleDanaAssignmentEntity.class)
             .addMappings(mapper -> {
-                mapper.map(src -> src.getId(), TempleDanaAssignmentDTO::setId);
-                mapper.map(src -> src.getDate(), TempleDanaAssignmentDTO::setDate);
-                mapper.map(src -> src.getIsConfirmed(), TempleDanaAssignmentDTO::setIsConfirmed);
-                mapper.map(src -> src.getConfirmationDate(), TempleDanaAssignmentDTO::setConfirmationDate);
-                mapper.map(src -> src.getFamily(), TempleDanaAssignmentDTO::setFamily);
-                mapper.map(src -> src.getTempleDana(), TempleDanaAssignmentDTO::setTempleDana);
+                mapper.skip(TempleDanaAssignmentEntity::setId);  // Skip ID mapping
+                mapper.map(TempleDanaAssignmentDTO::getDate, TempleDanaAssignmentEntity::setDate);
+                mapper.map(TempleDanaAssignmentDTO::getIsConfirmed, TempleDanaAssignmentEntity::setIsConfirmed);
+                mapper.map(TempleDanaAssignmentDTO::getConfirmationDate, TempleDanaAssignmentEntity::setConfirmationDate);
             });
 
-        modelMapper.typeMap(TempleDanaEntity.class, TempleDanaDTO.class)
+        // Configure Family mapping
+        modelMapper.getTypeMap(FamilyDTO.class, FamilyEntity.class)
             .addMappings(mapper -> {
-                mapper.map(src -> src.getId(), TempleDanaDTO::setTempleId);
-                mapper.map(src -> src.getMinNumberOfFamilies(), TempleDanaDTO::setMinNumberOfFamilies);
-                mapper.map(src -> src.getDana(), TempleDanaDTO::setDana);
-                mapper.map(src -> src.getTemple(), TempleDanaDTO::setTempleId);
+                mapper.skip(FamilyEntity::setId);  // Skip ID mapping
+                mapper.map(FamilyDTO::getFamilyName, FamilyEntity::setFamilyName);
+                mapper.map(FamilyDTO::getAddress, FamilyEntity::setAddress);
+                mapper.map(FamilyDTO::getTelephone, FamilyEntity::setTelephone);
             });
 
-        modelMapper.typeMap(TempleEntity.class, TempleDTO.class)
+        // Member mapping
+        modelMapper.getTypeMap(MemberDTO.class, MemberEntity.class)
             .addMappings(mapper -> {
-                mapper.map(src -> src.getId(), TempleDTO::setId);
-                mapper.map(src -> src.getName(), TempleDTO::setName);
-                mapper.map(src -> src.getAddress(), TempleDTO::setAddress);
-                mapper.map(src -> src.getContactNumber(), TempleDTO::setContactNumber);
-                mapper.map(src -> src.getEmail(), TempleDTO::setEmail);
-                mapper.map(src -> src.getWebsite(), TempleDTO::setWebsite);
+                mapper.skip(MemberEntity::setId);  // Skip ID mapping
+                mapper.map(MemberDTO::getName, MemberEntity::setName);
+                mapper.map(MemberDTO::getNic, MemberEntity::setNic);
+                mapper.map(MemberDTO::getPhoneNumber, MemberEntity::setPhoneNumber);
+                mapper.map(MemberDTO::getAddress, MemberEntity::setAddress);
             });
 
         return modelMapper;

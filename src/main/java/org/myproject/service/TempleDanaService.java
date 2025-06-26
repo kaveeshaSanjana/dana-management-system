@@ -1,10 +1,12 @@
 package org.myproject.service;
 
 import org.myproject.dto.TempleDanaDTO;
+import org.myproject.dto.TempleDanaDTOForTDC;
+
 import java.util.List;
 
 public interface TempleDanaService {
-    List<TempleDanaDTO> findAll();
+    List<TempleDanaDTOForTDC> findAll();
 
     TempleDanaDTO findById(Long templeId, Long danaId);
 
@@ -14,7 +16,9 @@ public interface TempleDanaService {
 
     void delete(Long templeId, Long danaId);
 
-    List<TempleDanaDTO> findByTempleId(Long templeId);
+    List<TempleDanaDTOForTDC> findByTempleId(Long templeId);
 
     List<TempleDanaDTO> findByDanaId(Long danaId);
+
+    TempleDanaDTO assignDanaToTemple(Long templeId, Long danaId, Integer minCount);
 }

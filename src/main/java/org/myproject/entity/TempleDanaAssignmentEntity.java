@@ -24,6 +24,6 @@ public class TempleDanaAssignmentEntity {
     private FamilyEntity family;
 
     private LocalDate date;
-    private Boolean isConfirmed = false;
+    private Boolean isConfirmed ;
     private LocalDate confirmationDate;
 }

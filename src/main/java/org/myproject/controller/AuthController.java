@@ -37,7 +37,7 @@ public class AuthController {
         // Try HeadMonk
         HeadMonkEntity headMonk = headMonkRepository.findByPhoneNumber(loginRequest.getPhoneNumber());
         if (headMonk != null && passwordEncoder.matches(loginRequest.getPassword(), headMonk.getPassword())) {
-            String token = jwtUtil.generateToken(headMonk.getPhoneNumber(), UserRole.HEADMONK , null);
+            String token = jwtUtil.generateToken(headMonk.getPhoneNumber(), UserRole.HEADMONK , null,headMonk.getTemple().getId());
             return ResponseEntity.ok(UserResponseDTO.builder()
                     .token(token)
                     .userType(UserRole.HEADMONK)
@@ -54,7 +54,7 @@ public class AuthController {
 
         MemberEntity member = memberRepository.findByPhoneNumber(loginRequest.getPhoneNumber());
         if (member != null && passwordEncoder.matches(loginRequest.getPassword(), member.getPassword())) {
-            String token = jwtUtil.generateToken(member.getPhoneNumber(), UserRole.MEMBER ,member.getFamily().stream().map(familyEntity -> familyEntity.getId()).toList());
+            String token = jwtUtil.generateToken(member.getPhoneNumber(), UserRole.MEMBER ,member.getFamily().stream().map(familyEntity -> familyEntity.getId()).toList(),null);
             return ResponseEntity.ok(MemberResponseDTO.builder()
                     .token(token)
                     .userType(UserRole.MEMBER)
@@ -69,7 +69,7 @@ public class AuthController {
         // Try Helper
         HelperEntity helper = helperRepository.findByPhoneNumber(loginRequest.getPhoneNumber());
         if (helper != null && passwordEncoder.matches(loginRequest.getPassword(), helper.getPassword())) {
-            String token = jwtUtil.generateToken(helper.getPhoneNumber(), UserRole.HELPER,null);
+            String token = jwtUtil.generateToken(helper.getPhoneNumber(), UserRole.HELPER,null, helper.getTemple().getId());
             return ResponseEntity.ok(UserResponseDTO.builder()
                     .token(token)
                     .userType(UserRole.HELPER)

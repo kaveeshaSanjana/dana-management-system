@@ -1,8 +1,12 @@
 package org.myproject.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class VillageFamilyDTO {
     private Long villageId;
     private FamilyDTO family;

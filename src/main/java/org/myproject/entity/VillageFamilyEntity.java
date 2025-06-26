@@ -7,7 +7,7 @@ import org.myproject.entity.serializable.VillageFamilyId;
 @Entity
 @Table(name = "village_family")
 @Data
-public class VillageFamilyEntity {
+public class    VillageFamilyEntity {
 
     @EmbeddedId
     private VillageFamilyId id;

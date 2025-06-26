@@ -1,7 +1,9 @@
 package org.myproject.dto;
 
 import lombok.Data;
-import java.util.List;
+import org.myproject.enums.Province;
+import org.myproject.enums.District;
+import org.myproject.enums.Town;
 
 @Data
 public class TempleDTO {
@@ -11,4 +13,7 @@ public class TempleDTO {
     private String contactNumber;
     private String email;
     private String website;
+    private Province province;
+    private District district;
+    private Town town;
 }

@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.myproject.dto.VillageDTO;
 import org.myproject.entity.VillageEntity;
+import org.myproject.enums.District;
+import org.myproject.enums.Province;
+import org.myproject.enums.Town;
 import org.myproject.repository.VillageRepository;
 import org.myproject.service.VillageService;
 import org.springframework.stereotype.Service;
@@ -68,6 +71,14 @@ public class VillageServiceImpl implements VillageService {
     @Override
     public List<VillageDTO> findByFamilyId(Long familyId) {
         return villageRepository.findByVillageFamiliesFamilyId(familyId).stream()
+                .map(entity -> modelMapper.map(entity, VillageDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VillageDTO> findByFilters(Province province, District district, Town town) {
+        List<VillageEntity> villages = villageRepository.findByFilters(province, district, town);
+        return villages.stream()
                 .map(entity -> modelMapper.map(entity, VillageDTO.class))
                 .collect(Collectors.toList());
     }

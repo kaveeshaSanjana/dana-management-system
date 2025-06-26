@@ -104,10 +104,10 @@ INSERT INTO village_family (temple_id, village_id, family_id) VALUES
 -- ========================================================
 
 -- Insert Temple Dana Assignments (depends on: temple_dana, members)
-INSERT INTO temple_dana_assignments (id, family_id, temple_id, dana_id, date,confirmation_date) VALUES
-(1, 1, 1, 1, '2025-06-20', '2025-06-20'), -- John for Morning Heel Dana
-(2, 2, 2, 2, '2025-06-21', '2025-06-21'), -- Mary for Buddha Pooja
-(3, 3, 3, 1, '2025-06-22', '2025-06-22'); -- Peter for Morning Heel Dana
+INSERT INTO temple_dana_assignments (id, family_id, temple_id, dana_id, date,confirmation_date,is_confirmed) VALUES
+(1, 1, 1, 1, '2025-06-20', '2025-06-20',1), -- John for Morning Heel Dana
+(2, 1, 2, 2, '2025-06-25', '2025-06-21',0), -- Mary for Buddha Pooja
+(3, 3, 1, 1, '2025-06-24', '2025-06-22',1); -- Peter for Morning Heel Dana
 
 -- Insert Family Members (after families are created)
 INSERT INTO member_family(family_id, member_id) VALUES

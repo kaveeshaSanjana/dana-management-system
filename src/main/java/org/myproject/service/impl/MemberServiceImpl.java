@@ -9,6 +9,7 @@ import org.myproject.service.MemberService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,5 +78,28 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void deleteMember(Long id) {
 
+    }
+
+    @Override
+    public Optional<MemberDTO> getMemberByPhoneNumberAndTemple(String phoneNumber, Long templeId) {
+        // First find member by phone number
+        MemberEntity member = memberRepository.findByPhoneNumber(phoneNumber);
+        if (member == null) {
+            return Optional.empty();
+        }
+
+        // Check if any of member's families belong to villages of this temple
+        boolean belongsToTemple = member.getFamily().stream()
+            .flatMap(family -> family.getVillageFamilies().stream())
+            .anyMatch(villageFamily ->
+                villageFamily.getVillage().getTempleVillages().stream()
+                    .anyMatch(templeVillage -> templeVillage.getTemple().getId().equals(templeId))
+            );
+
+        if (!belongsToTemple) {
+            return Optional.empty();
+        }
+
+        return Optional.of(modelMapper.map(member, MemberDTO.class));
     }
 }
