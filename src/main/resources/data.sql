@@ -2,20 +2,20 @@
 -- ========================================================
 
 -- Insert Villages (base table - no dependencies)
-INSERT INTO villages (id, name, province, district, country, postal_code) VALUES
-(1, 'Maligawatta', 'Western', 'Colombo', 'Sri Lanka', '01000'),
-(2, 'Dematagoda', 'Western', 'Colombo', 'Sri Lanka', '01000'),
-(3, 'Maradana', 'Western', 'Colombo', 'Sri Lanka', '01000'),
-(4, 'Grandpass', 'Western', 'Colombo', 'Sri Lanka', '01400'),
-(5, 'Mattakkuliya', 'Western', 'Colombo', 'Sri Lanka', '01500');
+INSERT INTO villages (id, name, province, district, town, country, postal_code) VALUES
+(1, 'Maligawatta', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY', 'Sri Lanka', '01000'),
+(2, 'Dematagoda', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY', 'Sri Lanka', '01000'),
+(3, 'Maradana', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY', 'Sri Lanka', '01000'),
+(4, 'Grandpass', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY', 'Sri Lanka', '01400'),
+(5, 'Mattakkuliya', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY', 'Sri Lanka', '01500');
 
 -- Insert Temples (base table - no dependencies)
-INSERT INTO temple (id, name, address, contact_number, email, website) VALUES
-(1, 'Sri Vajiraramaya', 'Maligawatta Temple Road', '0112695161', 'vajiraramaya@temple.lk', 'www.vajiraramaya.lk'),
-(2, 'Gangaramaya', 'Dematagoda Temple Road', '0112435127', 'gangaramaya@temple.lk', 'www.gangaramaya.lk'),
-(3, 'Dipaduttaramaya', 'Maradana Temple Road', '0112691378', 'dipaduttaramaya@temple.lk', 'www.dipaduttaramaya.lk'),
-(4, 'Siri Sudassanaramaya', 'Grandpass Road', '0112412567', 'sudassanaramaya@temple.lk', 'www.sudassanaramaya.lk'),
-(5, 'Jayasekaramaya', 'Mattakkuliya Road', '0112529876', 'jayasekaramaya@temple.lk', 'www.jayasekaramaya.lk');
+INSERT INTO temple (id, name, address, contact_number, email, website, province, district, town) VALUES
+(1, 'Sri Vajiraramaya', 'Maligawatta Temple Road', '0112695161', 'vajiraramaya@temple.lk', 'www.vajiraramaya.lk', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY'),
+(2, 'Gangaramaya', 'Dematagoda Temple Road', '0112435127', 'gangaramaya@temple.lk', 'www.gangaramaya.lk', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY'),
+(3, 'Dipaduttaramaya', 'Maradana Temple Road', '0112691378', 'dipaduttaramaya@temple.lk', 'www.dipaduttaramaya.lk', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY'),
+(4, 'Siri Sudassanaramaya', 'Grandpass Road', '0112412567', 'sudassanaramaya@temple.lk', 'www.sudassanaramaya.lk', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY'),
+(5, 'Jayasekaramaya', 'Mattakkuliya Road', '0112529876', 'jayasekaramaya@temple.lk', 'www.jayasekaramaya.lk', 'WESTERN', 'COLOMBO', 'COLOMBO_CITY');
 
 -- Insert Dana Types (base table - no dependencies)
 INSERT INTO dana (id, name, description, time) VALUES
